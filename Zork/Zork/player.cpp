@@ -12,3 +12,16 @@ Creature(name,description, location)
 Player::~Player()
 {
 }
+
+void Player::Look(const vector<string>& arguments)
+{
+	if (arguments.size() > 1)
+	{
+
+	}
+	else
+	{
+		location->Look();
+	}
+	
+}

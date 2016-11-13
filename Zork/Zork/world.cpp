@@ -1,14 +1,13 @@
 #include "world.h"
 #include "room.h"
 #include "exit.h"
-#include "player.h"
 #include "utilities.h"
 
 World::World()
 {
 	//Rooms
-	Room* bedroom1 = new Room("Bedroom_101", "Bedroom of the Room 101");
-	Room* bathroom1 = new Room("Bathroom_101", "Bathroom of the Room 101");
+	Room* bedroom1 = new Room("Bedroom_101", "You are in teh bedroom of Room 101.");
+	Room* bathroom1 = new Room("Bathroom_101", "You are in the bathromm of room 101. There is a body in the bath.");
 	entities.push_back(bedroom1);
 	entities.push_back(bathroom1);
 
@@ -19,7 +18,7 @@ World::World()
 	entities.push_back(exit2);
 
 	//Player
-	Player* player = new Player("Player", "Player", bathroom1);
+	player = new Player("Player", "Player", bathroom1);
 	entities.push_back(player);
 
 }
@@ -37,9 +36,17 @@ bool World::ExecuteCommand(const vector<string>& arguments)
 
 bool World::ParceCommand(const vector<string>& arguments)
 {
+	bool result = true;
 	if (Equal(arguments[0], "look"))
 	{
-		return true;
+		if (arguments.size() == 1)
+		{
+			player->Look(arguments);
+		}
 	}
-	return false;
+	else
+	{
+		result = false;
+	}
+	return result;
 }

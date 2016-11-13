@@ -1,9 +1,10 @@
 #ifndef __World__
 #define __World__
 
-#include "entity.h";
+#include "entity.h"
+#include "player.h"
 
-#include <list>;
+#include <list>
 #include <string>
 #include <vector>
 
@@ -20,6 +21,7 @@ public:
 
 public:
 	list<Entity*> entities;
+	Player* player;
 };
 
 #endif

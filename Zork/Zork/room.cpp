@@ -1,5 +1,7 @@
 #include "room.h"
 
+#include <iostream>
+
 Room::Room(const char* name, const char* description):
 Entity(name,description)
 {
@@ -9,4 +11,9 @@ Entity(name,description)
 
 Room::~Room()
 {
+}
+
+void Room::Look()
+{
+	cout << description;
 }
