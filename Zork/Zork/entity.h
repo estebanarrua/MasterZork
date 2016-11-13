@@ -8,6 +8,10 @@ using namespace std;
 
 const enum EntityType {
 	ENTITY,
+	ROOM,
+	CREATURE,
+	PLAYER,
+	EXIT,
 };
 
 class Entity
