@@ -1,8 +1,13 @@
 #ifndef __World__
 #define __World__
 
-#include <list>;
 #include "entity.h";
+
+#include <list>;
+#include <string>
+#include <vector>
+
+using namespace std;
 
 class World
 {
@@ -10,6 +15,8 @@ class World
 public:
 	World();
 	~World();
+	bool ExecuteCommand(const vector<string>& arguments);
+	bool ParceCommand(const vector<string>& arguments);
 
 public:
 	list<Entity*> entities;

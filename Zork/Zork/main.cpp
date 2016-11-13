@@ -11,6 +11,7 @@ int main()
 {
 	char input[512];
 	vector<string> arguments;
+	World* world = new World();
 	while (1)
 	{
 		arguments.clear();
@@ -22,6 +23,14 @@ int main()
 		}
 		else
 		{
+			if (world->ExecuteCommand(arguments)) 
+			{
+				cout << "ok\n";
+			}
+			else
+			{
+				cout << "Invalid command\n";
+			}
 			cout << ">";
 		}
 	}

@@ -1,5 +1,10 @@
 #include "utilities.h"
 
+bool Equal(const string & a, const char * b)
+{
+	return _stricmp(a.c_str(), b) == 0;
+}
+
 void Tokenize(const char* str, vector<string>& result)
 {
 	do

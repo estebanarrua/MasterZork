@@ -6,6 +6,7 @@
 
 using namespace std;
 
+bool Equal(const string& a, const char* b);
 void Tokenize(const char* str, vector<string>& result);
 
 
