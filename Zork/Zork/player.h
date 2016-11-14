@@ -12,6 +12,7 @@ public:
 	Player(const char* name, const char* description, Room* location);
 	~Player();
 	void Look(const vector<string>& arguments);
+	void Go(const string& direction);
 };
 
 #endif

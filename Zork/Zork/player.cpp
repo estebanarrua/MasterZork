@@ -25,3 +25,11 @@ void Player::Look(const vector<string>& arguments)
 	}
 	
 }
+
+void Player::Go(const string& direction)
+{
+	Room* dest = location->Go(direction);
+	if (dest != NULL) {
+		location = dest;
+	}
+}

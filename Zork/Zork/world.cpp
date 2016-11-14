@@ -12,10 +12,13 @@ World::World()
 	entities.push_back(bathroom1);
 
 	//Exits
-	Exit* exit1 = new Exit("NORTH", "Door to go form the bedroom to the bathroom.", bedroom1, bathroom1);
-	Exit* exit2 = new Exit("SOUTH", "Door to go from the bathroom to the bedroom.", bathroom1, bedroom1);
+	Exit* exit1 = new Exit("SOUTH", "Door to go form the bedroom to the bathroom.", bedroom1, bathroom1);
+	Exit* exit2 = new Exit("NORTH", "Door to go from the bathroom to the bedroom.", bathroom1, bedroom1);
 	entities.push_back(exit1);
+	bedroom1->container.push_back(exit1);
 	entities.push_back(exit2);
+	bathroom1->container.push_back(exit2);
+	
 
 	//Player
 	player = new Player("Player", "Player", bathroom1);
@@ -42,6 +45,17 @@ bool World::ParceCommand(const vector<string>& arguments)
 		if (arguments.size() == 1)
 		{
 			player->Look(arguments);
+		}
+	}
+	else if (Equal(arguments[0], "go"))
+	{
+		if (arguments.size() == 2) {
+			player->Go(arguments[1]);
+			player->location->Look();
+		}
+		else
+		{
+			result = false;
 		}
 	}
 	else
