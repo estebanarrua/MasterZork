@@ -115,7 +115,7 @@ bool World::ParceCommand(const vector<string>& arguments)
 		}
 		else
 		{
-			cout << "The command look only accept 1 or less parameters.";
+			cout << "The command look only accept 1 or less parameters.\n";
 		}
 	}
 	else if (Equal(arguments[0], "go"))
@@ -126,7 +126,7 @@ bool World::ParceCommand(const vector<string>& arguments)
 		}
 		else
 		{
-			cout << "The command go only accept 1 parameter.";
+			cout << "The command go only accept 1 parameter.\n";
 		}
 	}
 	else if (Equal(arguments[0], "take"))
@@ -137,7 +137,7 @@ bool World::ParceCommand(const vector<string>& arguments)
 		}
 		else
 		{
-			cout << "The command take only accept 2 or 4 parameters.";
+			cout << "The command take only accept 1 or 3 parameters.\n";
 		}
 	}
 	else if (Equal(arguments[0], "drop"))
@@ -148,7 +148,18 @@ bool World::ParceCommand(const vector<string>& arguments)
 		}
 		else
 		{
-			cout << "The command drop only accept 2 or 4 parameters.";
+			cout << "The command drop only accept 1 or 3 parameters.\n";
+		}
+	}
+	else if (Equal(arguments[0], "inventory"))
+	{
+		if (arguments.size() == 1)
+		{
+			player->Inventory();
+		}
+		else
+		{
+			cout << "The command inventory does not accept parameters.\n";
 		}
 	}
 	else

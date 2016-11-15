@@ -136,3 +136,17 @@ void Player::Drop(const vector<string>& arguments)
 		}
 	}
 }
+
+void Player::Inventory()
+{
+	if (container.size() == 0)
+		cout << "Your inventory is empty.\n";
+	else
+	{
+		cout << "You have the following items:\n";
+		for (list<Entity*>::iterator it = container.begin(); it != container.end(); ++it)
+		{
+			cout << " - " + (*it)->name + ".\n";
+		}
+	}
+}
