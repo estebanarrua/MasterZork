@@ -13,6 +13,7 @@ public:
 	~Player();
 	void Look(const vector<string>& arguments);
 	void Go(const string& direction);
+	void Take(const vector<string>& arguments);
 };
 
 #endif

@@ -109,7 +109,18 @@ bool World::ParceCommand(const vector<string>& arguments)
 		}
 		else
 		{
-			result = false;
+			cout << "The command go only accept 1 parameter.";
+		}
+	}
+	else if (Equal(arguments[0], "take"))
+	{
+		if (arguments.size() == 2 || arguments.size() == 4) 
+		{
+			player->Take(arguments);
+		}
+		else
+		{
+			cout << "The command go only accept 2 or 4 parameters.";
 		}
 	}
 	else
