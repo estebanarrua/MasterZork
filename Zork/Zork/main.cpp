@@ -23,11 +23,7 @@ int main()
 		}
 		else
 		{
-			if (world->ExecuteCommand(arguments)) 
-			{
-				cout << "ok\n";
-			}
-			else
+			if (!world->ExecuteCommand(arguments)) 
 			{
 				cout << "Invalid command\n";
 			}

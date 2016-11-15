@@ -19,6 +19,8 @@ void Room::Look()
 {
 	cout << description << "\n";
 	string exits = "";
+	string items = "";
+
 	for (list<Entity*>::iterator it = container.begin(); it != container.end(); ++it)
 	{
 		switch ((*it)->type)
@@ -26,11 +28,16 @@ void Room::Look()
 		case EXIT:
 			exits += "Direction " + ((Exit*)(*it))->name + ": " + ((Exit*)(*it))->destination->name + ".\n";
 			break;
+		case ITEM:
+			if (items == "")
+				items += "There are the following items here: \n";
+			items += " - " + (*it)->name + ".\n";
+			break;
 		default:
 			break;
 		}
 	}
-	cout << exits;
+	cout << exits << items;
 }
 
 Room* Room::Go(const string& direction)

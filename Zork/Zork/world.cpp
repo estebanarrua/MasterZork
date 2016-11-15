@@ -1,7 +1,10 @@
 #include "world.h"
 #include "room.h"
 #include "exit.h"
+#include "item.h"
 #include "utilities.h"
+
+#include <iostream>
 
 World::World()
 {
@@ -59,6 +62,14 @@ World::World()
 	entities.push_back(exit12);
 	bar->container.push_back(exit12);
 
+	//Items
+	Item* item1 = new Item("Desk", "A big desk of the room 101", false, true, false);
+	bedroom1->container.push_back(item1);
+	Item* item2 = new Item("Report", "FORENSIC REPORT\nThe body is a men between 30 and 40 years old.\nThe hour of death was between 23:00 and 00:00 yesterday.\nThe cause of death was a stab in the abdominal area.", true, false, true);
+	item1->container.push_back(item2);
+	Item* item3 = new Item("Wallet", "A black leather wallet", true, true, true);
+	item1->container.push_back(item3);
+
 	//Player
 	player = new Player("Player", "Player", bathroom1);
 	entities.push_back(player);
@@ -81,9 +92,13 @@ bool World::ParceCommand(const vector<string>& arguments)
 	bool result = true;
 	if (Equal(arguments[0], "look"))
 	{
-		if (arguments.size() == 1)
+		if (arguments.size() <= 2)
 		{
 			player->Look(arguments);
+		}
+		else
+		{
+			cout << "The command look only accept 1 or less parameters.";
 		}
 	}
 	else if (Equal(arguments[0], "go"))
