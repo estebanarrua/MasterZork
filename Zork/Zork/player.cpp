@@ -70,12 +70,14 @@ void Player::Take(const vector<string>& arguments)
 	{
 		Item* containerItem = (Item*)location->Find(arguments[3], ITEM);
 		if (containerItem == NULL)
-			cout << "There are not any item with name " + arguments[3] + " in the romm.\n";
+			containerItem = (Item*)this->Find(arguments[3], ITEM);
+		if (containerItem == NULL)
+			cout << "There are not any item with name " + arguments[3] + " in the romm or in your inventory.\n";
 		else
 		{
 			Item* item = (Item*)containerItem->Find(arguments[1], ITEM);
 			if (item == NULL)
-				cout << "There are not any item with name " + arguments[1] + "in the item with name " + arguments[3] + ".\n";
+				cout << "There are not any item with name " + arguments[1] + " in the item with name " + arguments[3] + ".\n";
 			else
 			{
 				if (item->isStorable)
@@ -88,6 +90,49 @@ void Player::Take(const vector<string>& arguments)
 					cout << "The item with name " + item->name + " is not storable. So you can not take it.\n";
 			}
 		}
+	}
+}
 
+void Player::Drop(const vector<string>& arguments)
+{
+	if (arguments.size() == 2)
+	{
+		Item* item = (Item*)this->Find(arguments[1], ITEM);
+		if (item != NULL)
+		{
+			location->container.push_back(item);
+			container.remove(item);
+			cout << "You droped the item with name " + item->name + ".\n";
+		}
+		else
+			cout << "There are not any item with name " + arguments[1] + " in your inventory.\n";
+	}
+	else
+	{
+		Item* containerItem = (Item*)location->Find(arguments[3], ITEM);
+		if (containerItem == NULL)
+			containerItem = (Item*)this->Find(arguments[3], ITEM);
+		if (containerItem == NULL)
+			cout << "There are not any item with name " + arguments[3] + " in the romm or in your inventory.\n";
+		else
+		{
+			if (containerItem->isContainer)
+			{
+				Item* item = (Item*)this->Find(arguments[1], ITEM);
+				if (item == NULL)
+					cout << "There are not any item with name " + arguments[1] + " in your inventory.\n";
+				else
+				{
+						containerItem->container.push_back(item);
+						container.remove(item);
+						cout << "You droped the item with name " + item->name + " into " + containerItem->name + ".\n";	
+				}
+			}
+			else
+			{
+				cout << "The item with name " + containerItem->name + " is not a container. So you can not drop any into it.\n";
+			}
+			
+		}
 	}
 }
