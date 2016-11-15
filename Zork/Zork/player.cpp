@@ -20,23 +20,15 @@ void Player::Look(const vector<string>& arguments)
 	if (arguments.size() > 1)
 	{
 		bool found = false;
-		for (list<Entity*>::iterator it = container.begin(); it != container.end() && !found; ++it)
+		Item* item = (Item*) this->Find(arguments[1], ITEM);
+		if(item == NULL)
+			item = (Item*) location->Find(arguments[1], ITEM); 
+		if (item != NULL)
 		{
-			if (Equal((*it)->name, arguments[1]) && (*it)->type == ITEM) {
-				found = true;
-				((Item*)(*it))->Look();
-				break;
-			}
+			item->Look();
 		}
-		for (list<Entity*>::iterator it = location->container.begin(); it != location->container.end() && !found; ++it)
+		else
 		{
-			if (Equal((*it)->name, arguments[1]) && (*it)->type == ITEM) {
-				found = true;
-				((Item*)(*it))->Look();
-				break;
-			}
-		}
-		if (!found) {
 			cout << "There are not any item with name " + arguments[1] +".\n";
 		}
 	}
@@ -59,30 +51,43 @@ void Player::Take(const vector<string>& arguments)
 {
 	if (arguments.size() == 2)
 	{
-		bool found = false;
-		for (list<Entity*>::iterator it = location->container.begin(); it != location->container.end() && !found; ++it)
+		Item* item = (Item*) location->Find(arguments[1], ITEM);
+		if (item != NULL)
 		{
-			if (Equal((*it)->name, arguments[1]) && (*it)->type == ITEM) {
-				found = true;
-				Item* itemAux = ((Item*)(*it));
-				if (itemAux->isStorable)
-				{
-					container.push_back(itemAux);
-					location->container.remove(itemAux);
-					cout << "You took the item with name " + itemAux->name + ".\n";
-				}
-				else
-				{
-					cout << "The item with name " + itemAux->name + " is not storable. So you can not take it.\n";
-				}
+			if (item->isStorable)
+			{
+				container.push_back(item);
+				location->container.remove(item);
+				cout << "You took the item with name " + item->name + ".\n";
 			}
+			else
+				cout << "The item with name " + item->name + " is not storable. So you can not take it.\n";
 		}
-		if (!found) {
+		else
 			cout << "There are not any item with name " + arguments[1] + " in the room.\n";
-		}
 	}
 	else
 	{
+		Item* containerItem = (Item*)location->Find(arguments[3], ITEM);
+		if (containerItem == NULL)
+			cout << "There are not any item with name " + arguments[3] + " in the romm.\n";
+		else
+		{
+			Item* item = (Item*)containerItem->Find(arguments[1], ITEM);
+			if (item == NULL)
+				cout << "There are not any item with name " + arguments[1] + "in the item with name " + arguments[3] + ".\n";
+			else
+			{
+				if (item->isStorable)
+				{
+					container.push_back(item);
+					containerItem->container.remove(item);
+					cout << "You took the item with name " + item->name + ".\n";
+				}
+				else
+					cout << "The item with name " + item->name + " is not storable. So you can not take it.\n";
+			}
+		}
 
 	}
 }

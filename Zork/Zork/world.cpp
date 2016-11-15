@@ -114,7 +114,7 @@ bool World::ParceCommand(const vector<string>& arguments)
 	}
 	else if (Equal(arguments[0], "take"))
 	{
-		if (arguments.size() == 2 || arguments.size() == 4) 
+		if (arguments.size() == 2 || (arguments.size() == 4 && Equal(arguments[2], "from"))) 
 		{
 			player->Take(arguments);
 		}

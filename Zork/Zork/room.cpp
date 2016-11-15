@@ -42,15 +42,13 @@ void Room::Look()
 
 Room* Room::Go(const string& direction)
 {
-	Room* dest = NULL;
-	for (list<Entity*>::iterator it = container.begin(); it != container.end() && dest == NULL; ++it)
+	Exit* exit = (Exit*)this->Find(direction, EXIT);
+	if (exit != NULL)
 	{
-		if ((*it)->type == EXIT)
-		{
-			if (Equal((*it)->name, direction)) {
-				dest = ((Exit*)(*it))->destination;
-			}
-		}
+		return exit->destination;
 	}
-	return dest;
+	else 
+	{
+		return NULL;
+	}
 }
