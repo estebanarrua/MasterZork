@@ -30,7 +30,11 @@ void Player::Look(const vector<string>& arguments)
 		}
 		else
 		{
-			cout << "There are not any item with name " + arguments[1] +".\n";
+			Person* person = (Person*)location->Find(arguments[1], PERSON);
+			if (person != NULL)
+				person->Look();
+			else
+				cout << "There are not any item or person with name " + arguments[1] +".\n";
 		}
 	}
 	else
@@ -172,7 +176,7 @@ void Player::Ask(const vector<string>& arguments)
 		else
 		{
 			string ans = person->GetAnswerAbout(arguments[3]);
-			cout << ans + ".\n";
+			cout << person->name + ": " + ans + ".\n";
 		}
 	}
 }

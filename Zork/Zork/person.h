@@ -24,6 +24,7 @@ public:
 	Person(const char* name, const char* description, Room* location, const bool isSuspect, const bool isWitness, const string statement, const vector<Answers> answers);
 	~Person();
 	string GetAnswerAbout(const string& key) const;
+	void Look();
 };
 
 #endif

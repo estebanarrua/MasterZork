@@ -1,6 +1,7 @@
 #include "person.h"
 #include "utilities.h"
 
+#include <iostream>
 
 Person::Person(const char * name, const char * description, Room * location, const bool isSuspect, const bool isWitness, const string statement, const vector<Answers> answers):
 Creature(name, description, location), isSuspect(isSuspect), isWitness(isWitness), statement(statement), answers(answers)
@@ -23,4 +24,25 @@ string Person::GetAnswerAbout(const string & key) const
 		}
 	}
 	return "I do not have idea about it";
+}
+
+void Person::Look()
+{
+	cout << description << "\n";
+	string items = "";
+
+	for (list<Entity*>::iterator it = container.begin(); it != container.end(); ++it)
+	{
+		switch ((*it)->type)
+		{
+		case ITEM:
+			if (items == "")
+				items += "She/He has the following items: \n";
+			items += " - " + (*it)->name + ".\n";
+			break;
+		default:
+			break;
+		}
+	}
+	cout << items;
 }

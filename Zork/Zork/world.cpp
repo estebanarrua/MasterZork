@@ -64,49 +64,6 @@ World::World()
 	entities.push_back(exit11);
 	entities.push_back(exit12);
 
-	//Items
-	Item* item1 = new Item("Desk", "A big desk of the room 101", false, true, false);
-	bedroom1->container.push_back(item1);
-	Item* item2 = new Item("Report", "FORENSIC REPORT\nThe body is a men between 30 and 40 years old.\nThe hour of death was between 23:00 and 00:00 yesterday.\nThe cause of death was a stab in the abdominal area.", true, false, true);
-	item1->container.push_back(item2);
-	Item* item3 = new Item("Wallet", "A black leather wallet", true, true, true);
-	item1->container.push_back(item3);
-	Item* item4 = new Item("Money", "124 american dolars", true, false, true);
-	item3->container.push_back(item4);
-	Item* item5 = new Item("DNI", "Robert K. Lewis\n48331-23998", true, false, true);
-	item3->container.push_back(item5);
-	Item* item6 = new Item("CreditCard", "A international visa credit card", true, false, true);
-	item3->container.push_back(item6);
-	Item* item7 = new Item("Photo", "A photo of a red-haired woman with blue eyes.", true, false, true);
-	item3->container.push_back(item7);
-	Item* item8 = new Item("Cooler", "A old cooler with ice.", false, true, false);
-	hall->container.push_back(item8);
-	Item* item9 = new Item("Knife", "A bloody knife.", true, false, true);
-	item8->container.push_back(item9);
-	Item* item10 = new Item("Hair", "A long red hair", true, false, true);
-	bathroom1->container.push_back(item10);
-	Item* item11 = new Item("Pouch", "A pink pouch.", true, true, true);
-	bathroom2->container.push_back(item11);
-	Item* item12 = new Item("Brush", "A hair brush with long red hairs.", true, true, true);
-	item11->container.push_back(item12);
-	Item* item13 = new Item("Lipstik", "A red lipstik.", true, true, true);
-	item11->container.push_back(item13);
-
-
-	entities.push_back(item1);
-	entities.push_back(item2);
-	entities.push_back(item3);
-	entities.push_back(item4); 
-	entities.push_back(item5);
-	entities.push_back(item6);
-	entities.push_back(item7);
-	entities.push_back(item8);
-	entities.push_back(item9);
-	entities.push_back(item10);
-	entities.push_back(item11);
-	entities.push_back(item12);
-	entities.push_back(item13);
-
 	//Persons
 	vector<Answers> answers = vector<Answers>();
 	Answers answer = Answers();
@@ -119,6 +76,9 @@ World::World()
 	Person* forensic = new Person("Eduardo", "Eduardo Garcia the forensic", bathroom1, false, false, "Hi I am the forensic, if you bring me evidence I can analyze it for you", answers);
 	bathroom1->container.push_back(forensic);
 	answers.clear();
+	answer.key = "Video";
+	answer.answer = "If you pay me I give you";
+	answers.push_back(answer);
 	Person* security = new Person("Security", "Miguel Velasquez Security Man", hall, false, true, "I did not see any strange last night", answers);
 	hall->container.push_back(security);
 	answers.clear();
@@ -179,6 +139,51 @@ World::World()
 	entities.push_back(susan);
 	entities.push_back(receptionist);
 	entities.push_back(bartender);
+
+	//Items
+	Item* item1 = new Item("Desk", "A big desk of the room 101", false, true, false);
+	bedroom1->container.push_back(item1);
+	Item* item2 = new Item("Report", "FORENSIC REPORT\nThe body is a men between 30 and 40 years old.\nThe hour of death was between 23:00 and 00:00 yesterday.\nThe cause of death was a stab in the abdominal area.", true, false, true);
+	item1->container.push_back(item2);
+	Item* item3 = new Item("Wallet", "A black leather wallet", true, true, true);
+	item1->container.push_back(item3);
+	Item* item4 = new Item("Money", "124 american dolars", true, false, true);
+	item3->container.push_back(item4);
+	Item* item5 = new Item("DNI", "Robert K. Lewis\n48331-23998", true, false, true);
+	item3->container.push_back(item5);
+	Item* item6 = new Item("CreditCard", "A international visa credit card", true, false, true);
+	item3->container.push_back(item6);
+	Item* item7 = new Item("Photo", "A photo of a red-haired woman with blue eyes.", true, false, true);
+	item3->container.push_back(item7);
+	Item* item8 = new Item("Cooler", "A old cooler with ice.", false, true, false);
+	hall->container.push_back(item8);
+	Item* item9 = new Item("Knife", "A bloody knife.", true, false, true);
+	item8->container.push_back(item9);
+	Item* item10 = new Item("Hair", "A long red hair", true, false, true);
+	bathroom1->container.push_back(item10);
+	Item* item11 = new Item("Pouch", "A pink pouch.", true, true, true);
+	bathroom2->container.push_back(item11);
+	Item* item12 = new Item("Brush", "A hair brush with long red hairs.", true, true, true);
+	item11->container.push_back(item12);
+	Item* item13 = new Item("Lipstik", "A red lipstik.", true, true, true);
+	item11->container.push_back(item13);
+	Item* item14 = new Item("Video", "In the video you can see how Robert and Alber got into the Robert's room toghether at 10:30 p.m. and Alber went out 40 minutes later with a knife and he put it in the cooler", true, false, true);
+	security->container.push_back(item14);
+
+	entities.push_back(item1);
+	entities.push_back(item2);
+	entities.push_back(item3);
+	entities.push_back(item4); 
+	entities.push_back(item5);
+	entities.push_back(item6);
+	entities.push_back(item7);
+	entities.push_back(item8);
+	entities.push_back(item9);
+	entities.push_back(item10);
+	entities.push_back(item11);
+	entities.push_back(item12);
+	entities.push_back(item13);
+	entities.push_back(item14);
 
 	//Player
 	player = new Player("Player", "Player", bathroom1);
