@@ -1,6 +1,7 @@
 #include "player.h"
 #include "utilities.h"
 #include "item.h"
+#include "person.h"
 
 #include <iostream>
 
@@ -147,6 +148,31 @@ void Player::Inventory()
 		for (list<Entity*>::iterator it = container.begin(); it != container.end(); ++it)
 		{
 			cout << " - " + (*it)->name + ".\n";
+		}
+	}
+}
+
+void Player::Ask(const vector<string>& arguments)
+{
+	if (arguments.size() == 2)
+	{
+		Person* person = (Person*)location->Find(arguments[1], PERSON);
+		if (person != NULL)
+		{
+			cout << person->name + ": " + person->statement + ".\n";
+		}
+		else
+			cout << "There are not any person with name " + arguments[1] + " in the room.\n";
+	}
+	else
+	{
+		Person* person = (Person*)location->Find(arguments[1], PERSON);
+		if (person == NULL)
+			cout << "There are not any person with name " + arguments[1] + " in the room.\n";
+		else
+		{
+			string ans = person->GetAnswerAbout(arguments[3]);
+			cout << ans + ".\n";
 		}
 	}
 }

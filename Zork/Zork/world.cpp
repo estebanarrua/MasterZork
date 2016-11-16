@@ -2,6 +2,7 @@
 #include "room.h"
 #include "exit.h"
 #include "item.h"
+#include "person.h"
 #include "utilities.h"
 
 #include <iostream>
@@ -78,6 +79,19 @@ World::World()
 	item3->container.push_back(item6);
 	Item* item7 = new Item("Photo", "A photo of a red-haired woman with blue eyes.", true, false, true);
 	item3->container.push_back(item7);
+	Item* item8 = new Item("Cooler", "A old cooler with ice.", false, true, false);
+	hall->container.push_back(item8);
+	Item* item9 = new Item("Knife", "A bloody knife.", true, false, true);
+	item8->container.push_back(item9);
+	Item* item10 = new Item("Hair", "A long red hair", true, false, true);
+	bathroom1->container.push_back(item10);
+	Item* item11 = new Item("Pouch", "A pink pouch.", true, true, true);
+	bathroom2->container.push_back(item11);
+	Item* item12 = new Item("Brush", "A hair brush with long red hairs.", true, true, true);
+	item11->container.push_back(item12);
+	Item* item13 = new Item("Lipstik", "A red lipstik.", true, true, true);
+	item11->container.push_back(item13);
+
 
 	entities.push_back(item1);
 	entities.push_back(item2);
@@ -86,6 +100,26 @@ World::World()
 	entities.push_back(item5);
 	entities.push_back(item6);
 	entities.push_back(item7);
+	entities.push_back(item8);
+	entities.push_back(item9);
+	entities.push_back(item10);
+	entities.push_back(item11);
+	entities.push_back(item12);
+	entities.push_back(item13);
+
+	//Persons
+	vector<Answers> answers = vector<Answers>();
+	Answers answer = Answers();
+	answer.key = "Hair";
+	answer.answer = "This hair is from Susan Queen";
+	answers.push_back(answer);
+	answer.key = "Knife";
+	answer.answer = "This knife has a couple of prints on it, one is Mrs. Susan Queen and the other is Mr. Albert Queen";
+	answers.push_back(answer);
+	Person* forensic = new Person("Eduardo", "Eduardo Garcia", bathroom1, false, false, "Hi I am the forensic, if you bring me evidence I can analyze it for you", answers);
+	bathroom1->container.push_back(forensic);
+
+	entities.push_back(forensic);
 
 	//Player
 	player = new Player("Player", "Player", bathroom1);
@@ -160,6 +194,17 @@ bool World::ParceCommand(const vector<string>& arguments)
 		else
 		{
 			cout << "The command inventory does not accept parameters.\n";
+		}
+	}
+	else if (Equal(arguments[0], "ask"))
+	{
+		if (arguments.size() == 2 || (arguments.size() == 4 && Equal(arguments[2], "about")))
+		{
+			player->Ask(arguments);
+		}
+		else
+		{
+			cout << "The command ask only accept 1 or 3 parameters.\n";
 		}
 	}
 	else

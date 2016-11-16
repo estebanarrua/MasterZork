@@ -1,6 +1,7 @@
 #include "room.h"
 #include "utilities.h"
 #include "exit.h"
+#include "person.h"
 
 #include <iostream>
 
@@ -20,6 +21,7 @@ void Room::Look()
 	cout << description << "\n";
 	string exits = "";
 	string items = "";
+	string persons = "";
 
 	for (list<Entity*>::iterator it = container.begin(); it != container.end(); ++it)
 	{
@@ -33,11 +35,16 @@ void Room::Look()
 				items += "There are the following items here: \n";
 			items += " - " + (*it)->name + ".\n";
 			break;
+		case PERSON:
+			if (persons == "")
+				persons += "There are the following people here: \n";
+			persons += " - " + (*it)->name + ".\n";
+			break;
 		default:
 			break;
 		}
 	}
-	cout << exits << items;
+	cout << exits << items << persons;
 }
 
 Room* Room::Go(const string& direction)
@@ -47,7 +54,7 @@ Room* Room::Go(const string& direction)
 	{
 		return exit->destination;
 	}
-	else 
+	else
 	{
 		return NULL;
 	}

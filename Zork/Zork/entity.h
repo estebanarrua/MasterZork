@@ -13,6 +13,7 @@ const enum EntityType {
 	PLAYER,
 	EXIT,
 	ITEM,
+	PERSON,
 };
 
 class Entity
