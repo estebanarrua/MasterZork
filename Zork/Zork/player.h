@@ -17,6 +17,7 @@ public:
 	void Drop(const vector<string>& arguments);
 	void Inventory();
 	void Ask(const vector<string>& arguments);
+	void Pay(const vector<string>& arguments);
 };
 
 #endif

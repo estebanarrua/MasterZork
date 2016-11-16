@@ -23,7 +23,7 @@ string Person::GetAnswerAbout(const string & key) const
 			return ans.answer;
 		}
 	}
-	return "I do not have idea about it";
+	return "I do not have a clue about it";
 }
 
 void Person::Look()

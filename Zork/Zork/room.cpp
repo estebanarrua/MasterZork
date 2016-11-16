@@ -32,12 +32,12 @@ void Room::Look()
 			break;
 		case ITEM:
 			if (items == "")
-				items += "There are the following items here: \n";
+				items += "There are the following items: \n";
 			items += " - " + (*it)->name + ".\n";
 			break;
 		case PERSON:
 			if (persons == "")
-				persons += "There are the following people here: \n";
+				persons += "The following people are here: \n";
 			persons += " - " + (*it)->name + ".\n";
 			break;
 		default:
