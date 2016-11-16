@@ -16,7 +16,7 @@ Player::~Player()
 {
 }
 
-void Player::Look(const vector<string>& arguments)
+void Player::Look(const vector<string>& arguments) const
 {
 	if (arguments.size() > 1)
 	{
@@ -142,14 +142,14 @@ void Player::Drop(const vector<string>& arguments)
 	}
 }
 
-void Player::Inventory()
+void Player::Inventory() const
 {
 	if (container.size() == 0)
 		cout << "Your inventory is empty.\n";
 	else
 	{
 		cout << "You have the following items:\n";
-		for (list<Entity*>::iterator it = container.begin(); it != container.end(); ++it)
+		for (list<Entity*>::const_iterator it = container.cbegin(); it != container.cend(); ++it)
 		{
 			cout << " - " + (*it)->name + ".\n";
 		}

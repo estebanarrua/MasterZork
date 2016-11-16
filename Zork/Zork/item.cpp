@@ -2,8 +2,8 @@
 
 #include <iostream>
 
-Item::Item(const char * name, const char * description, const bool isCatchable, const bool isContainer, const bool isStorable):
-Entity(name, description), isCatchable(isCatchable), isContainer(isContainer), isStorable(isStorable)
+Item::Item(const char * name, const char * description, const bool isContainer, const bool isStorable):
+Entity(name, description), isContainer(isContainer), isStorable(isStorable)
 {
 	type = ITEM;
 }
@@ -12,11 +12,11 @@ Item::~Item()
 {
 }
 
-void Item::Look()
+void Item::Look() const
 {
 	string items = "";
 
-	for (list<Entity*>::iterator it = container.begin(); it != container.end(); ++it)
+	for (list<Entity*>::const_iterator it = container.cbegin(); it != container.cend(); ++it)
 	{
 		switch ((*it)->type)
 		{

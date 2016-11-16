@@ -16,13 +16,13 @@ Room::~Room()
 {
 }
 
-void Room::Look()
+void Room::Look() const
 {
 	string exits = "";
 	string items = "";
 	string persons = "";
 
-	for (list<Entity*>::iterator it = container.begin(); it != container.end(); ++it)
+	for (list<Entity*>::const_iterator it = container.cbegin(); it != container.cend(); ++it)
 	{
 		switch ((*it)->type)
 		{

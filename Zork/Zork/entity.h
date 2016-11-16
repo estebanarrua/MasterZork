@@ -28,7 +28,7 @@ public:
 public:
 	Entity(const char* name, const char* description);
 	~Entity();
-	Entity* Find(const string& name, EntityType type);
+	Entity* Find(const string& name, EntityType type) const;
 };
 
 #endif

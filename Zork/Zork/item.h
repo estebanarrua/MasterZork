@@ -6,15 +6,14 @@
 class Item : public Entity
 {
 public:
-	bool isCatchable;
 	bool isContainer;
 	bool isStorable;
 
 public:
-	Item(const char* name, const char* description, const bool isCatchable, const bool isContainer, const bool isStorable);
+	Item(const char* name, const char* description, const bool isContainer, const bool isStorable);
 	~Item();
 
-	void Look();
+	void Look() const;
 };
 
 #endif

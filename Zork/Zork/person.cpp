@@ -26,11 +26,11 @@ string Person::GetAnswerAbout(const string & key) const
 	return "I do not have a clue about it";
 }
 
-void Person::Look()
+void Person::Look() const
 {
 	string items = "";
 
-	for (list<Entity*>::iterator it = container.begin(); it != container.end(); ++it)
+	for (list<Entity*>::const_iterator it = container.cbegin(); it != container.cend(); ++it)
 	{
 		switch ((*it)->type)
 		{

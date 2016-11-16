@@ -11,10 +11,10 @@ Entity::~Entity()
 {
 }
 
-Entity * Entity::Find(const string & name, EntityType type)
+Entity * Entity::Find(const string & name, EntityType type) const
 {
 	Entity* res = NULL;
-	for (list<Entity*>::iterator it = container.begin(); it != container.end(); ++it)
+	for (list<Entity*>::const_iterator it = container.cbegin(); it != container.cend(); ++it)
 	{
 		if ((*it)->type == type)
 		{

@@ -7,12 +7,13 @@
 class Exit : public Entity
 {
 public:
+	Room* source;
+	Room* destination;
+
+public:
 	Exit(const char* name, const char* description, Room* source, Room* detination);
 	~Exit();
 
-public:
-	Room* source;
-	Room* destination;
 };
 
 #endif

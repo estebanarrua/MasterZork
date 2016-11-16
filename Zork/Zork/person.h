@@ -23,7 +23,7 @@ public:
 	Person(const char* name, const char* description, Room* location, const bool isGuilty, const string statement, const vector<Answers> answers);
 	~Person();
 	string GetAnswerAbout(const string& key) const;
-	void Look();
+	void Look() const;
 };
 
 #endif

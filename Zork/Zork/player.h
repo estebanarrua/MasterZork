@@ -22,11 +22,11 @@ public:
 public:
 	Player(const char* name, const char* description, Room* location, const GameState state);
 	~Player();
-	void Look(const vector<string>& arguments);
+	void Look(const vector<string>& arguments) const;
 	void Go(const string& direction);
 	void Take(const vector<string>& arguments);
 	void Drop(const vector<string>& arguments);
-	void Inventory();
+	void Inventory() const;
 	void Ask(const vector<string>& arguments);
 	void Pay(const vector<string>& arguments);
 	void Arrest(const string& name);

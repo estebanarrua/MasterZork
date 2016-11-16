@@ -141,33 +141,33 @@ World::World()
 	entities.push_back(bartender);
 
 	//Items
-	Item* item1 = new Item("Desk", "A big desk in the room 101", false, true, false);
+	Item* item1 = new Item("Desk", "A big desk in the room 101", true, false);
 	bedroom1->container.push_back(item1);
-	Item* item2 = new Item("Report", "FORENSIC REPORT\nThe body belongs to a man, between 30 and 40 years old.\nThe time of death is placed between 22:00 and 00:00 yesterday.\nThe cause of death was a stab in the abdominal area.", true, false, true);
+	Item* item2 = new Item("Report", "FORENSIC REPORT\nThe body belongs to a man, between 30 and 40 years old.\nThe time of death is placed between 22:00 and 00:00 yesterday.\nThe cause of death was a stab in the abdominal area.", false, true);
 	item1->container.push_back(item2);
-	Item* item3 = new Item("Wallet", "A black leather wallet", true, true, true);
+	Item* item3 = new Item("Wallet", "A black leather wallet", true, true);
 	item1->container.push_back(item3);
-	Item* item4 = new Item("Money", "124 american dolars", true, false, true);
+	Item* item4 = new Item("Money", "124 american dolars", false, true);
 	item3->container.push_back(item4);
-	Item* item5 = new Item("DNI", "Robert K. Lewis\n48331-23998", true, false, true);
+	Item* item5 = new Item("DNI", "Robert K. Lewis\n48331-23998", false, true);
 	item3->container.push_back(item5);
-	Item* item6 = new Item("CreditCard", "An international visa credit card", true, false, true);
+	Item* item6 = new Item("CreditCard", "An international visa credit card", false, true);
 	item3->container.push_back(item6);
-	Item* item7 = new Item("Photo", "A photo of a red-haired woman with blue eyes.", true, false, true);
+	Item* item7 = new Item("Photo", "A photo of a red-haired woman with blue eyes.", false, true);
 	item3->container.push_back(item7);
-	Item* item8 = new Item("Cooler", "An old cooler with ice.", false, true, false);
+	Item* item8 = new Item("Cooler", "An old cooler with ice.", true, false);
 	hall->container.push_back(item8);
-	Item* item9 = new Item("Knife", "A bloody knife.", true, false, true);
+	Item* item9 = new Item("Knife", "A bloody knife.", false, true);
 	item8->container.push_back(item9);
-	Item* item10 = new Item("Hair", "A long red hair", true, false, true);
+	Item* item10 = new Item("Hair", "A long red hair", false, true);
 	bathroom1->container.push_back(item10);
-	Item* item11 = new Item("Pouch", "A pink pouch.", true, true, true);
+	Item* item11 = new Item("Pouch", "A pink pouch.", true, true);
 	bathroom2->container.push_back(item11);
-	Item* item12 = new Item("Brush", "A hair brush with long red hairs.", true, true, true);
+	Item* item12 = new Item("Brush", "A hair brush with long red hairs.", true, true);
 	item11->container.push_back(item12);
-	Item* item13 = new Item("Lipstik", "A red lipstik.", true, true, true);
+	Item* item13 = new Item("Lipstik", "A red lipstik.", true, true);
 	item11->container.push_back(item13);
-	Item* item14 = new Item("Video", "In the video you can see how Robert and Albert got into Robert's room toghether at 10:30 p.m. and Albert got out 40 minutes later with a knife and he hid it in the cooler", true, false, true);
+	Item* item14 = new Item("Video", "In the video you can see how Robert and Albert got into Robert's room toghether at 10:30 p.m. and Albert got out 40 minutes later with a knife and he hid it in the cooler", false, true);
 	security->container.push_back(item14);
 
 	entities.push_back(item1);
@@ -194,6 +194,11 @@ World::World()
 
 World::~World()
 {
+	for (list<Entity*>::iterator it = entities.begin(); it != entities.end(); ++it)
+	{
+		delete (*it);
+	}
+	entities.clear();
 }
 
 bool World::ExecuteCommand(const vector<string>& arguments)
