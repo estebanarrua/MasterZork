@@ -14,7 +14,6 @@ Item::~Item()
 
 void Item::Look()
 {
-	cout << description << "\n";
 	string items = "";
 
 	for (list<Entity*>::iterator it = container.begin(); it != container.end(); ++it)
@@ -30,5 +29,5 @@ void Item::Look()
 			break;
 		}
 	}
-	cout << items;
+	cout << name + "\n" + description + "\n" + items;
 }

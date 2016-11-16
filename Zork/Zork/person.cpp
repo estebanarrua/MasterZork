@@ -3,8 +3,8 @@
 
 #include <iostream>
 
-Person::Person(const char * name, const char * description, Room * location, const bool isSuspect, const bool isWitness, const string statement, const vector<Answers> answers):
-Creature(name, description, location), isSuspect(isSuspect), isWitness(isWitness), statement(statement), answers(answers)
+Person::Person(const char * name, const char * description, Room * location, const bool isGuilty, const string statement, const vector<Answers> answers):
+Creature(name, description, location), isGuilty(isGuilty), statement(statement), answers(answers)
 {
 	type = PERSON;
 }
@@ -28,7 +28,6 @@ string Person::GetAnswerAbout(const string & key) const
 
 void Person::Look()
 {
-	cout << description << "\n";
 	string items = "";
 
 	for (list<Entity*>::iterator it = container.begin(); it != container.end(); ++it)
@@ -44,5 +43,5 @@ void Person::Look()
 			break;
 		}
 	}
-	cout << items;
+	cout << name + "\n" + description + "\n" + items;
 }

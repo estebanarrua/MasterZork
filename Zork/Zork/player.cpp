@@ -5,8 +5,8 @@
 
 #include <iostream>
 
-Player::Player(const char* name, const char* description, Room* location):
-Creature(name,description, location)
+Player::Player(const char* name, const char* description, Room* location, const GameState state):
+Creature(name,description, location), state(state)
 {
 	type = PLAYER;
 }
@@ -177,6 +177,8 @@ void Player::Ask(const vector<string>& arguments)
 		{
 			string ans = person->GetAnswerAbout(arguments[3]);
 			cout << person->name + ": " + ans + ".\n";
+			if (person->isGuilty && Equal(arguments[3], "knife"))
+				state = KILLER_CONFESS;
 		}
 	}
 }
@@ -206,4 +208,31 @@ void Player::Pay(const vector<string>& arguments)
 	}
 	else
 		cout << "You do not have money to pay for " + arguments[3] + ".\n";
+}
+
+void Player::Arrest(const string & name)
+{
+	Person* person = (Person*)location->Find(name, PERSON);
+	if (person != NULL)
+	{
+		if (person->isGuilty)
+		{
+			vector<Entity*> proofs;
+			for (list<Entity*>::iterator it = container.begin(); it != container.end(); ++it)
+			{
+				//You need the knife, the video and the forensic report to incriminate someone.
+				if (Equal((*it)->name, "Knife") || Equal((*it)->name, "Video") || Equal((*it)->name, "Report")) {
+					proofs.push_back(*it);
+				}
+			}
+			if (proofs.size() == 3)
+				state = ARREST_OK;
+			else
+				state = ARREST_WITHOUT_PROOF;
+		}
+		else
+			state = ARREST_FAIL;
+	}
+	else
+		cout << "There is not a person with name " + name + " in the room.\n";
 }

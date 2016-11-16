@@ -6,10 +6,21 @@
 #include <string>
 #include <vector>
 
+const enum GameState {
+	PLAYING,
+	ARREST_OK,
+	ARREST_FAIL,
+	ARREST_WITHOUT_PROOF,
+	KILLER_CONFESS,
+	EXIT_GAME,
+};
+
 class Player : public Creature
 {
 public:
-	Player(const char* name, const char* description, Room* location);
+	GameState state;
+public:
+	Player(const char* name, const char* description, Room* location, const GameState state);
 	~Player();
 	void Look(const vector<string>& arguments);
 	void Go(const string& direction);
@@ -18,6 +29,7 @@ public:
 	void Inventory();
 	void Ask(const vector<string>& arguments);
 	void Pay(const vector<string>& arguments);
+	void Arrest(const string& name);
 };
 
 #endif

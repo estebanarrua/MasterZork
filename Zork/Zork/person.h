@@ -15,13 +15,12 @@ struct Answers
 class Person : public Creature
 {
 public:
-	bool isSuspect;
-	bool isWitness;
+	bool isGuilty;
 	string statement;
 	vector<Answers> answers;
 
 public:
-	Person(const char* name, const char* description, Room* location, const bool isSuspect, const bool isWitness, const string statement, const vector<Answers> answers);
+	Person(const char* name, const char* description, Room* location, const bool isGuilty, const string statement, const vector<Answers> answers);
 	~Person();
 	string GetAnswerAbout(const string& key) const;
 	void Look();

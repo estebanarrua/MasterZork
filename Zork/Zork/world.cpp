@@ -73,13 +73,13 @@ World::World()
 	answer.key = "Knife";
 	answer.answer = "This knife has a couple of fingerprints on it, one belongs to Mrs. Susan Queen and the other to Mr. Albert Queen";
 	answers.push_back(answer);
-	Person* forensic = new Person("Eduardo", "Eduardo Garcia the forensic", bathroom1, false, false, "Hi I am the forensic, if you bring me evidence I can analyze it for you", answers);
+	Person* forensic = new Person("Eduardo", "Eduardo Garcia the forensic", bathroom1, false, "Hi I am the forensic, if you bring me evidence I can analyze it for you", answers);
 	bathroom1->container.push_back(forensic);
 	answers.clear();
 	answer.key = "Video";
 	answer.answer = "If you pay, I will give it to you";
 	answers.push_back(answer);
-	Person* security = new Person("Security", "Miguel Velasquez Security Man", hall, false, true, "I did not see anything strange last night", answers);
+	Person* security = new Person("Security", "Miguel Velasquez Security Man", hall, false, "I did not see anything strange last night", answers);
 	hall->container.push_back(security);
 	answers.clear();
 	answer.key = "Robert";
@@ -97,7 +97,7 @@ World::World()
 	answer.key = "Knife";
 	answer.answer = "Ok. I confess, I killed Robert. I saw him with my wife and we had a figth. And I killed him";
 	answers.push_back(answer);
-	Person* albert = new Person("Albert", "Albert Queen a wealthy man", bedroom2, true, false, "Yesterday I was all nigth with my wife", answers);
+	Person* albert = new Person("Albert", "Albert Queen a wealthy man", bedroom2, true, "Yesterday I was all nigth with my wife", answers);
 	bedroom2->container.push_back(albert);
 	answers.clear();
 	answer.key = "Robert";
@@ -115,10 +115,10 @@ World::World()
 	answer.key = "Knife";
 	answer.answer = "This is mi knife, where did you find it? I lost it yesterday. I use it to cook, as I am a chef";
 	answers.push_back(answer);
-	Person* susan = new Person("Susan", "Susan Queen a sexy lady with red hair an blue eyes", reception, true, false, "Yesterday I was in the bar until 00:00, and them I went to my room to sleep.", answers);
+	Person* susan = new Person("Susan", "Susan Queen a sexy lady with red hair an blue eyes", reception, false, "Yesterday I was in the bar until 00:00, and them I went to my room to sleep.", answers);
 	reception->container.push_back(susan);
 	answers.clear();
-	Person* receptionist = new Person("Receptionist", "Kelly Danvers receptionist", reception, false, true, "I call Mr. Lewis's room this morning to wake him up and as I did not get an answer, I went to the room and saw him. Then I call the police. I do not know anything more, this is my first day", answers);
+	Person* receptionist = new Person("Receptionist", "Kelly Danvers receptionist", reception, false, "I call Mr. Lewis's room this morning to wake him up and as I did not get an answer, I went to the room and saw him. Then I call the police. I do not know anything more, this is my first day", answers);
 	reception->container.push_back(receptionist);
 	answers.clear();
 	answer.key = "Robert";
@@ -130,7 +130,7 @@ World::World()
 	answer.key = "Susan";
 	answer.answer = "She arrived with Robert, and she was here drinking until 00:00";
 	answers.push_back(answer);
-	Person* bartender = new Person("Bartender", "Jhon Smock", bar, false, true, "Last nigh Robert, Albert and Susan were dinking togheder here", answers);
+	Person* bartender = new Person("Bartender", "Jhon Smock", bar, false, "Last nigh Robert, Albert and Susan were dinking togheder here", answers);
 	bar->container.push_back(bartender);
 
 	entities.push_back(forensic);
@@ -186,7 +186,7 @@ World::World()
 	entities.push_back(item14);
 
 	//Player
-	player = new Player("Player", "Player", bathroom1);
+	player = new Player("Player", "Player", bathroom1, PLAYING);
 	entities.push_back(player);
 
 }
@@ -197,12 +197,6 @@ World::~World()
 }
 
 bool World::ExecuteCommand(const vector<string>& arguments)
-{
-	
-	return ParceCommand(arguments);
-}
-
-bool World::ParceCommand(const vector<string>& arguments)
 {
 	bool result = true;
 	if (Equal(arguments[0], "look"))
@@ -255,7 +249,14 @@ bool World::ParceCommand(const vector<string>& arguments)
 			player->Pay(arguments);
 
 		else
-			cout << "The command pay only accept  3 parameters.\n";
+			cout << "The command pay only accept 3 parameters.\n";
+	}
+	else if (Equal(arguments[0], "arrest"))
+	{
+		if (arguments.size() == 2)
+			player->Arrest(arguments[1]);
+		else
+			cout << "The command pay only accept 1 parameter.\n";
 	}
 	else
 	{

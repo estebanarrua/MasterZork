@@ -18,7 +18,6 @@ Room::~Room()
 
 void Room::Look()
 {
-	cout << description << "\n";
 	string exits = "";
 	string items = "";
 	string persons = "";
@@ -44,7 +43,7 @@ void Room::Look()
 			break;
 		}
 	}
-	cout << exits << items << persons;
+	cout << name + "\n" + description + "\n" + exits + items + persons;
 }
 
 Room* Room::Go(const string& direction)
